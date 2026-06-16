@@ -397,17 +397,41 @@
   (function () { var s; try { s = localStorage.getItem(THEME_KEY); } catch (e) {} if (!s) s = "light"; /* FT salmon is the default; toggle for dark */ applyTheme(s); })();
   $("#theme-toggle").addEventListener("click", function () { applyTheme(document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark"); onScroll(); });
 
-  var bar = $("#progress-bar"), dusk = $("#dusk"), flame = $(".lamp-flame"), smoke = $(".lamp-smoke");
-  function onScroll() {
-    var h = document.documentElement, max = h.scrollHeight - h.clientHeight;
-    var p = max > 0 ? (h.scrollTop || document.body.scrollTop) / max : 0;
+  var bar = $("#progress-bar"), starLayer = $("#stars");
+  function _lerp(a, b, t) { return Math.round(a + (b - a) * t); }
+  function _mix(a, b, t) { return "rgb(" + _lerp(a[0], b[0], t) + "," + _lerp(a[1], b[1], t) + "," + _lerp(a[2], b[2], t) + ")"; }
+  function _smooth(a, b, p) { var t = Math.max(0, Math.min(1, (p - a) / (b - a))); return t * t * (3 - 2 * t); }
+  function _multi(stops, pos, p) { var i = 0; while (i < pos.length - 2 && p > pos[i + 1]) i++; var s = (p - pos[i]) / (pos[i + 1] - pos[i]); return _mix(stops[i], stops[i + 1], Math.max(0, Math.min(1, s))); }
+  // sky background: sunny day -> golden -> sunset -> dusk -> night
+  var SKY_POS = [0, 0.28, 0.45, 0.60, 0.80, 1.0];
+  var SKY  = [[255,241,229],[250,212,156],[222,134,98],[150,92,90],[52,44,74],[8,12,26]];
+  var SKY2 = [[251,233,217],[243,202,148],[206,124,92],[134,82,82],[42,36,62],[16,21,40]];
+  // text / lines / accents: day -> night, switched within a narrow mid-scroll band so text is never mid-grey for long
+  var DAY   = { ink:[26,24,23], inkSoft:[63,58,54], inkFaint:[107,99,92], line:[230,212,195], lineStrong:[216,195,174], claret:[153,15,61], teal:[13,118,128], creative:[153,15,61], media:[15,84,153] };
+  var NIGHT = { ink:[242,244,251], inkSoft:[208,214,228], inkFaint:[156,164,188], line:[46,52,74], lineStrong:[64,72,96], claret:[246,112,154], teal:[86,202,210], creative:[246,112,154], media:[124,180,230] };
+  var PAL_VARS = ["--paper","--paper-2","--ink","--ink-soft","--ink-faint","--line","--line-strong","--claret","--teal","--creative","--media","--chart-bar","--text-halo"];
+  function applyScene(p) {
+    var root = document.documentElement;
     bar.style.width = (p * 100) + "%";
-    var dark = document.documentElement.getAttribute("data-theme") === "dark";
-    if (dusk) dusk.style.opacity = dark ? "0" : (p * 0.82).toFixed(3);
-    if (flame) flame.style.opacity = Math.max(0, 1 - p * 0.96).toFixed(3);
-    if (smoke) smoke.style.opacity = Math.max(0, (p - 0.55) * 1.6).toFixed(3);
+    if (starLayer) starLayer.style.opacity = _smooth(0.58, 1.0, p).toFixed(3);
+    if (root.getAttribute("data-theme") === "dark") { PAL_VARS.forEach(function (v) { root.style.removeProperty(v); }); return; }
+    root.style.setProperty("--paper", _multi(SKY, SKY_POS, p));
+    root.style.setProperty("--paper-2", _multi(SKY2, SKY_POS, p));
+    var tf = _smooth(0.50, 0.56, p); // 0 = day text, 1 = night text
+    function sv(n, k) { root.style.setProperty(n, _mix(DAY[k], NIGHT[k], tf)); }
+    sv("--ink","ink"); sv("--ink-soft","inkSoft"); sv("--ink-faint","inkFaint");
+    sv("--line","line"); sv("--line-strong","lineStrong");
+    sv("--claret","claret"); sv("--teal","teal"); sv("--creative","creative"); sv("--media","media");
+    root.style.setProperty("--chart-bar", _mix(DAY.media, NIGHT.media, tf));
+    root.style.setProperty("--text-halo", "rgba(0,0,0," + (tf * 0.6).toFixed(2) + ")");
   }
-  window.addEventListener("scroll", onScroll, { passive: true }); onScroll();
+  function onScroll() {
+    var root = document.documentElement, max = root.scrollHeight - root.clientHeight;
+    applyScene(max > 0 ? (root.scrollTop || document.body.scrollTop) / max : 0);
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("hashchange", onScroll);
+  onScroll();
 
   (function () { var words = ($("#article").innerText || "").trim().split(/\s+/).length; $("#read-time").textContent = Math.max(1, Math.round(words / 220)) + " min read"; })();
 
@@ -432,6 +456,22 @@
   /* ============================================================
      WHIMSY
      ============================================================ */
+  // 0) build the starfield
+  (function () {
+    var sky = $("#stars");
+    if (!sky) return;
+    var n = 72, html = "";
+    for (var i = 0; i < n; i++) {
+      var x = (Math.random() * 100).toFixed(2);
+      var y = (Math.random() * 100).toFixed(2);
+      var s = (Math.random() * 1.8 + 1).toFixed(1);
+      var tw = (Math.random() * 3 + 2).toFixed(1);
+      var dl = (Math.random() * 4).toFixed(1);
+      html += '<span class="star" style="left:' + x + '%;top:' + y + '%;width:' + s + 'px;height:' + s + 'px;--tw:' + tw + 's;animation-delay:' + dl + 's"></span>';
+    }
+    sky.innerHTML = html;
+  })();
+
   // 1) closing-line answer cycler
   (function () {
     var gEl = $("#guess"), gTail = $("#guess-tail");
