@@ -401,11 +401,16 @@
   function _lerp(a, b, t) { return Math.round(a + (b - a) * t); }
   function _mix(a, b, t) { return "rgb(" + _lerp(a[0], b[0], t) + "," + _lerp(a[1], b[1], t) + "," + _lerp(a[2], b[2], t) + ")"; }
   function _smooth(a, b, p) { var t = Math.max(0, Math.min(1, (p - a) / (b - a))); return t * t * (3 - 2 * t); }
-  function _multi(stops, pos, p) { var i = 0; while (i < pos.length - 2 && p > pos[i + 1]) i++; var s = (p - pos[i]) / (pos[i + 1] - pos[i]); return _mix(stops[i], stops[i + 1], Math.max(0, Math.min(1, s))); }
-  // sky background: sunny day -> golden -> sunset -> dusk -> night
-  var SKY_POS = [0, 0.28, 0.45, 0.60, 0.80, 1.0];
-  var SKY  = [[255,241,229],[250,212,156],[222,134,98],[150,92,90],[52,44,74],[8,12,26]];
-  var SKY2 = [[251,233,217],[243,202,148],[206,124,92],[134,82,82],[42,36,62],[16,21,40]];
+  function _multi(stops, pos, p) {
+    var i = 0; while (i < pos.length - 2 && p > pos[i + 1]) i++;
+    var s = (p - pos[i]) / (pos[i + 1] - pos[i]); s = Math.max(0, Math.min(1, s));
+    s = s * s * (3 - 2 * s); // ease each segment so stops blend without seams
+    return _mix(stops[i], stops[i + 1], s);
+  }
+  // sky background: sunny day -> golden -> amber -> sunset -> rose -> dusk -> indigo -> night
+  var SKY_POS = [0, 0.12, 0.25, 0.38, 0.50, 0.62, 0.74, 0.87, 1.0];
+  var SKY  = [[255,241,229],[255,236,210],[252,216,164],[244,184,132],[226,144,110],[182,114,106],[122,86,100],[56,48,80],[8,12,28]];
+  var SKY2 = [[251,233,217],[250,228,200],[245,206,156],[236,176,126],[214,134,104],[168,104,98],[110,78,92],[48,42,70],[16,21,40]];
   // text / lines / accents: day -> night, switched within a narrow mid-scroll band so text is never mid-grey for long
   var DAY   = { ink:[26,24,23], inkSoft:[63,58,54], inkFaint:[107,99,92], line:[230,212,195], lineStrong:[216,195,174], claret:[153,15,61], teal:[13,118,128], creative:[153,15,61], media:[15,84,153] };
   var NIGHT = { ink:[242,244,251], inkSoft:[208,214,228], inkFaint:[156,164,188], line:[46,52,74], lineStrong:[64,72,96], claret:[246,112,154], teal:[86,202,210], creative:[246,112,154], media:[124,180,230] };
@@ -417,7 +422,7 @@
     if (root.getAttribute("data-theme") === "dark") { PAL_VARS.forEach(function (v) { root.style.removeProperty(v); }); return; }
     root.style.setProperty("--paper", _multi(SKY, SKY_POS, p));
     root.style.setProperty("--paper-2", _multi(SKY2, SKY_POS, p));
-    var tf = _smooth(0.50, 0.56, p); // 0 = day text, 1 = night text
+    var tf = _smooth(0.55, 0.68, p); // 0 = day text, 1 = night text
     function sv(n, k) { root.style.setProperty(n, _mix(DAY[k], NIGHT[k], tf)); }
     sv("--ink","ink"); sv("--ink-soft","inkSoft"); sv("--ink-faint","inkFaint");
     sv("--line","line"); sv("--line-strong","lineStrong");
