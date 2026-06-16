@@ -227,7 +227,11 @@
     $$("a.src").forEach(function (a) {
       a.addEventListener("click", function (e) {
         var tgt = $(a.getAttribute("href"));
-        if (tgt) { e.preventDefault(); tgt.scrollIntoView({ behavior: "smooth", block: "center" }); tgt.classList.remove("flash"); void tgt.offsetWidth; tgt.classList.add("flash"); }
+        if (tgt) {
+          e.preventDefault();
+          var d = tgt.closest("details"); if (d) d.open = true;
+          setTimeout(function () { tgt.scrollIntoView({ behavior: "smooth", block: "center" }); tgt.classList.remove("flash"); void tgt.offsetWidth; tgt.classList.add("flash"); }, d ? 60 : 0);
+        }
       });
     });
   }
@@ -391,10 +395,18 @@
   var THEME_KEY = "aic2035_theme";
   function applyTheme(t) { document.documentElement.setAttribute("data-theme", t); try { localStorage.setItem(THEME_KEY, t); } catch (e) {} }
   (function () { var s; try { s = localStorage.getItem(THEME_KEY); } catch (e) {} if (!s) s = "light"; /* FT salmon is the default; toggle for dark */ applyTheme(s); })();
-  $("#theme-toggle").addEventListener("click", function () { applyTheme(document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark"); });
+  $("#theme-toggle").addEventListener("click", function () { applyTheme(document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark"); onScroll(); });
 
-  var bar = $("#progress-bar");
-  function onScroll() { var h = document.documentElement, max = h.scrollHeight - h.clientHeight; bar.style.width = (max > 0 ? (h.scrollTop || document.body.scrollTop) / max * 100 : 0) + "%"; }
+  var bar = $("#progress-bar"), dusk = $("#dusk"), flame = $(".lamp-flame"), smoke = $(".lamp-smoke");
+  function onScroll() {
+    var h = document.documentElement, max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? (h.scrollTop || document.body.scrollTop) / max : 0;
+    bar.style.width = (p * 100) + "%";
+    var dark = document.documentElement.getAttribute("data-theme") === "dark";
+    if (dusk) dusk.style.opacity = dark ? "0" : (p * 0.82).toFixed(3);
+    if (flame) flame.style.opacity = Math.max(0, 1 - p * 0.96).toFixed(3);
+    if (smoke) smoke.style.opacity = Math.max(0, (p - 0.55) * 1.6).toFixed(3);
+  }
   window.addEventListener("scroll", onScroll, { passive: true }); onScroll();
 
   (function () { var words = ($("#article").innerText || "").trim().split(/\s+/).length; $("#read-time").textContent = Math.max(1, Math.round(words / 220)) + " min read"; })();
@@ -416,6 +428,55 @@
   function toast(msg) { toastEl.textContent = msg; toastEl.classList.add("show"); clearTimeout(toastTimer); toastTimer = setTimeout(function () { toastEl.classList.remove("show"); }, 1900); }
 
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") { hidePopover(); closeDrawer(); if (modal.classList.contains("show")) closeNoteModal(); } });
+
+  /* ============================================================
+     WHIMSY
+     ============================================================ */
+  // 1) closing-line answer cycler
+  (function () {
+    var gEl = $("#guess"), gTail = $("#guess-tail");
+    if (!gEl || !gTail) return;
+    var guesses = ["a prompt", "a spreadsheet", "a vibe", "an algorithm", "nobody", "what"];
+    var gi = guesses.length - 1;
+    function cycle() {
+      gi = (gi + 1) % guesses.length;
+      var w = guesses[gi];
+      gEl.textContent = w;
+      gTail.textContent = (w === "what") ? ", I'm unsure." : ".";
+    }
+    gEl.addEventListener("click", function (e) { e.stopPropagation(); cycle(); });
+    gEl.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); cycle(); } });
+  })();
+
+  // 2) surfacing whale — on reaching the whale-oil section, or typing "whale"
+  (function () {
+    var whale = $("#whale");
+    if (!whale) return;
+    var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function play() {
+      if (reduce || whale.classList.contains("swim")) return;
+      whale.classList.add("swim");
+      setTimeout(function () { whale.classList.remove("swim"); }, 9200);
+    }
+    var era = $('[data-pid="c2"]');
+    if (era && "IntersectionObserver" in window) {
+      var fired = false;
+      new IntersectionObserver(function (ents) {
+        ents.forEach(function (en) { if (en.isIntersecting && !fired) { fired = true; play(); } });
+      }, { threshold: 0.6 }).observe(era);
+    }
+    var seq = "";
+    document.addEventListener("keydown", function (e) {
+      if (e.key && e.key.length === 1) { seq = (seq + e.key).slice(-5).toLowerCase(); if (seq === "whale") play(); }
+    });
+  })();
+
+  // 3) open collapsed Further Reading when navigating to it
+  (function () {
+    var fr = $("#further-reading");
+    if (!fr) return;
+    $$('a[href="#further-reading"]').forEach(function (a) { a.addEventListener("click", function () { fr.open = true; }); });
+  })();
 
   /* ---------- init ---------- */
   renderCharts();
