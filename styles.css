@@ -177,6 +177,7 @@ a.src:hover { text-decoration: underline; }
   font-family: var(--serif); font-weight: 700; font-size: clamp(1.4rem, 3.4vw, 1.85rem);
   line-height: 1.15; letter-spacing: -.01em; margin: 48px 0 22px; padding-top: 8px;
 }
+.closing-line { font-style: italic; color: var(--ink-soft); }
 
 .pull {
   margin: 36px 0; padding: 0 0 0 22px; border: 0; position: relative;
@@ -436,7 +437,9 @@ mark.hl-green { background: var(--hl-green); }
 }
 
 @media (max-width: 380px) {
-  .section-eyebrow { display: none; }
+  /* keep the back-link; collapse the Share label to its icon instead */
+  .share-btn span { display: none; }
+  .share-btn { padding: 0 10px; }
 }
 
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; animation: none !important; } }
