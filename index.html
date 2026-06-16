@@ -4,31 +4,37 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>The Agency Industrial Complex, 2035</title>
-<meta name="description" content="By 2035, my job won't exist. An interactive essay on the structural collapse and re-split of the advertising industry — with sources, notes, and an interactive map of the marketer's future portfolio." />
+<meta name="description" content="By 2035, my job won't exist — and neither will the agencies I've worked at. A forecast of how AI, consolidation and procurement break the agency model apart, and what the survivors become." />
 <meta name="author" content="Ed Tsue" />
 <meta property="og:title" content="The Agency Industrial Complex, 2035" />
-<meta property="og:description" content="By 2035, my job won't exist. An interactive essay on the collapse and re-split of the agency world." />
+<meta property="og:description" content="A Big Read on the collapse and re-split of the advertising industry." />
 <meta property="og:type" content="article" />
+<meta property="og:url" content="https://agencycomplex2035.edtsue.com/" />
+<meta property="og:image" content="https://agencycomplex2035.edtsue.com/images/hero.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://agencycomplex2035.edtsue.com/" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;0,8..60,900;1,8..60,400&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<!-- Reading progress -->
 <div id="progress-bar" aria-hidden="true"></div>
 
-<!-- Top bar -->
-<header class="topbar">
-  <div class="topbar-inner">
-    <a class="brand" href="#top">AIC<span>·2035</span></a>
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="section-eyebrow" href="#top">The&nbsp;Big&nbsp;Read</a>
     <nav class="top-actions">
+      <button id="share-top" class="share-btn" title="Share this article" aria-label="Share">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M16 6l-4-4-4 4M12 2v13" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Share</span>
+      </button>
       <button id="notes-toggle" class="icon-btn" title="Your notes &amp; highlights" aria-label="Open notes">
-        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 4h16v12H7l-3 3V4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 4h16v12H7l-3 3V4z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
         <span class="notes-count" id="notes-count">0</span>
       </button>
-      <button id="theme-toggle" class="icon-btn" title="Toggle light / dark" aria-label="Toggle theme">
-        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+      <button id="theme-toggle" class="icon-btn" title="Toggle reading mode" aria-label="Toggle theme">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
       </button>
     </nav>
   </div>
@@ -36,199 +42,192 @@
 
 <a id="top"></a>
 
-<!-- Hero -->
-<section class="hero">
-  <p class="kicker">An essay on structural collapse, financialized</p>
-  <h1>The Agency<br />Industrial Complex,<br /><span class="year">2035</span></h1>
-  <div class="byline">
-    <span>By <strong>Ed Tsue</strong></span>
-    <span class="dot">·</span>
-    <span id="read-time">— min read</span>
-    <span class="dot">·</span>
-    <span>Interactive edition</span>
-  </div>
-  <p class="dek">By 2035, my job won't exist. In fact, none of the jobs I've ever had will exist. I doubt any of the agencies I've worked at will either. Here is how the collapse plays out — and what the survivors become.</p>
-  <div class="hero-hint">
-    <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M4 7l5 5-5 5M11 7h9M11 12h9M11 17h6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    <span>Select any text to <strong>highlight</strong> it or attach a <strong>note</strong>. Hover the <sup class="src-demo">¹</sup> markers for sources.</span>
-  </div>
-</section>
+<article class="paper">
 
-<div class="layout">
-  <!-- TOC -->
-  <aside class="toc" id="toc">
-    <p class="toc-label">Contents</p>
-    <ol>
-      <li><a href="#act-1" data-sec="act-1"><span class="toc-num">I</span> The Collapse</a></li>
-      <li><a href="#act-2" data-sec="act-2"><span class="toc-num">II</span> The Re-Split</a></li>
-      <li><a href="#portfolio" data-sec="portfolio"><span class="toc-num">◆</span> The Marketer's Portfolio</a></li>
-      <li><a href="#act-3" data-sec="act-3"><span class="toc-num">III</span> The Whale Oil Era</a></li>
-      <li><a href="#timeline" data-sec="timeline"><span class="toc-num">⌚</span> Timeline</a></li>
-      <li><a href="#sources" data-sec="sources"><span class="toc-num">§</span> Sources</a></li>
-    </ol>
-  </aside>
+  <!-- ===== Article header ===== -->
+  <header class="headline-block">
+    <p class="kicker">The Future of Agencies</p>
+    <h1>The Agency Industrial Complex, 2035</h1>
+    <p class="standfirst">By 2035 my job won't exist — and neither, I suspect, will the agencies I've worked at. A forecast of how artificial intelligence, holding-company collapse and procurement break the agency model apart, and what the survivors become.</p>
+    <div class="byline">
+      <span class="by">Ed&nbsp;Tsue</span>
+      <span class="meta-dot">·</span>
+      <span id="read-time">— min read</span>
+      <span class="meta-dot">·</span>
+      <span>Interactive edition</span>
+    </div>
+  </header>
 
-  <!-- Article -->
-  <main class="article" id="article">
+  <figure class="hero-figure">
+    <img src="images/hero.jpg" alt="Abraham Storck's 1690 painting of Dutch whalers near Spitsbergen: a whale surfaces beside harpoon boats while a Dutch ship lies in the Arctic ice at sunset, a shore station rendering blubber into oil." width="2000" height="1404" />
+    <figcaption><span class="hero-cap">Once essential, then obsolete: Dutch whalers off Spitsbergen, a shore station rendering blubber into the oil that lit Europe.</span> <span class="hero-credit">Abraham Storck, 1690 · Rijksmuseum, Amsterdam · public domain</span></figcaption>
+  </figure>
 
-    <!-- ACT I -->
-    <section id="act-1" class="act">
-      <div class="act-head">
-        <span class="act-index">Act I</span>
-        <h2>The Collapse</h2>
-        <span class="act-year">2025 →</span>
-      </div>
+  <p class="reader-hint" id="reader-hint">Select any passage to <strong>highlight</strong> it or attach a <strong>note</strong> — saved on your device. Sourced claims are <a href="#further-reading">linked</a>.</p>
 
-      <p data-pid="p1">AI ate the junior layer. The work that used to train the next generation — research, first drafts, exploratory layouts, performance creative variants — got absorbed by tools that didn't exist three years ago.<a class="src" href="#s-juniors" data-src="juniors" title="Sources on AI and entry-level agency work">¹</a> The pyramid that produced every senior person in this industry stopped recruiting at the bottom.</p>
+  <div class="rule-thin"></div>
 
-      <p data-pid="p2">The holdcos have merged. Storied agencies, shuttered. Symptoms of structural collapse being financialized.<a class="src" href="#s-merger" data-src="merger" title="Sources on holdco consolidation">²</a></p>
+  <!-- ===== Body ===== -->
+  <div class="body" id="article">
 
-      <p data-pid="p3">The largest media buying tools in the world now route around agencies by default.<a class="src" href="#s-selfserve" data-src="selfserve" title="Sources on self-serve media platforms">³</a></p>
+    <p class="lead" data-pid="p0">By 2035, my job won't exist. In fact, none of the jobs I've ever had will exist. I doubt any of the agencies I've worked at will either.</p>
 
-      <p data-pid="p4">Procurement won. Transparency tools dissolved the media cross-subsidy that propped up creative for thirty years.<a class="src" href="#s-procurement" data-src="procurement" title="Sources on procurement &amp; transparency">⁴</a> Average CMO tenure has slipped to about four years and keeps falling — too short to be the single buyer the agency industrial complex relied on.<a class="src" href="#s-cmo" data-src="cmo" title="Sources on CMO tenure">⁵</a></p>
+    <p data-pid="p1">AI ate the junior layer. The work that used to train the next generation — research, first drafts, exploratory layouts, performance creative variants — got absorbed by tools that didn't exist three years ago.<a class="src" href="#s-juniors" title="Sources: AI and entry-level agency work">1</a> The pyramid that produced every senior person in this industry stopped recruiting at the bottom.</p>
 
-      <aside class="factbox" data-pid="fb1">
-        <span class="factbox-tag">By the numbers</span>
-        <p>As of 2025, S&amp;P 500 CMO tenure sits at <strong>4.1 years</strong> — already the shortest meaningful seat in the C-suite, and trending down. Entry-level marketing postings are off roughly <strong>35%</strong> since January 2023.<a class="src" href="#s-cmo" data-src="cmo" title="Spencer Stuart / Marketing Dive">⁵</a></p>
-      </aside>
+    <!-- FIGURE: entry-level postings -->
+    <figure class="chart" id="fig-entry">
+      <figcaption class="chart-head">
+        <span class="chart-kicker">Figure 1</span>
+        <h4 class="chart-title">The bottom of the pyramid is closing</h4>
+        <p class="chart-sub">US entry-level marketing job postings, indexed to January 2023&nbsp;=&nbsp;100</p>
+      </figcaption>
+      <div class="chart-svg" data-chart="entry"></div>
+      <p class="chart-source">Source: industry job-posting data via Ad Age / eMarketer, 2025. Endpoints shown; line illustrative.</p>
+    </figure>
 
-      <p data-pid="p5">These forces don't just shrink the industry. They polarize it. The middle has no defensible position when the work is either too cheap to bill hours for or too high-stakes to bill anything but performance.</p>
-    </section>
+    <p data-pid="p2">The holdcos have merged. Storied agencies, shuttered. Symptoms of structural collapse being financialized.<a class="src" href="#s-merger" title="Sources: holdco consolidation">2</a></p>
 
-    <hr class="divider" data-glyph="✶ ✶ ✶" />
+    <!-- FIGURE: holdco order -->
+    <figure class="chart" id="fig-holdco">
+      <figcaption class="chart-head">
+        <span class="chart-kicker">Figure 2</span>
+        <h4 class="chart-title">A new order at the top</h4>
+        <p class="chart-sub">Approximate latest annual revenue, US$&nbsp;billion</p>
+      </figcaption>
+      <div class="chart-svg" data-chart="holdco"></div>
+      <p class="chart-source">Source: company filings &amp; press, 2024–25. Omnicom's completed acquisition of IPG combines to ~US$25–26bn, surpassing WPP and Publicis. Figures approximate.</p>
+    </figure>
 
-    <!-- ACT II -->
-    <section id="act-2" class="act">
-      <div class="act-head">
-        <span class="act-index">Act II</span>
-        <h2>The Re-Split</h2>
-        <span class="act-year">2035</span>
-      </div>
+    <p data-pid="p3">The largest media buying tools in the world now route around agencies by default.<a class="src" href="#s-selfserve" title="Sources: self-serve media platforms">3</a></p>
 
-      <blockquote class="pull" data-pid="pq1">Creative agencies will become the marketer's hedge funds.</blockquote>
+    <p data-pid="p4">Procurement won. Transparency tools dissolved the media cross-subsidy that propped up creative for thirty years.<a class="src" href="#s-procurement" title="Sources: procurement &amp; transparency">4</a> Average CMO tenure has slipped to about four years and keeps falling — too short to be the single buyer the agency industrial complex relied on.<a class="src" href="#s-cmo" title="Sources: CMO tenure">5</a></p>
 
-      <p data-pid="p6">There will be more of them. Each will be smaller, with very senior people. Craftspeople. They will be AI-powered. Meaning, there will be little to no entry-level work.</p>
-      <p data-pid="p7">Each will be specialized by creative output — Super Bowl ad, creator campaign, OOH, experiential, etc.</p>
-      <p data-pid="p8">Creative agencies will be hired to deliver high-impact but rare home runs. They should not be fired for their failures. But they will be.</p>
-      <p data-pid="p9">They will be paid with a small retainer plus a performance bonus.</p>
-      <p data-pid="p10">One marketer may work with several creative agencies at once (including an in-house option for Fortune 100 companies) — spreading their bets and smoothing variance across them.</p>
-      <p data-pid="p11" class="emphasis-line">There will be no mid-sized creative agencies.</p>
+    <!-- FIGURE: C-suite tenure -->
+    <figure class="chart" id="fig-tenure">
+      <figcaption class="chart-head">
+        <span class="chart-kicker">Figure 3</span>
+        <h4 class="chart-title">The shortest seat in the C-suite</h4>
+        <p class="chart-sub">Average executive tenure, years</p>
+      </figcaption>
+      <div class="chart-svg" data-chart="tenure"></div>
+      <p class="chart-source">Source: Spencer Stuart tenure studies, 2023–25. CMO ≈ 4.1 years and trending down.</p>
+    </figure>
 
-      <blockquote class="pull" data-pid="pq2">Media agencies will become the marketer's endowments.</blockquote>
+    <p data-pid="p5">These forces don't just shrink the industry. They polarize it. The middle has no defensible position when the work is either too cheap to bill hours for or too high-stakes to bill anything but performance.</p>
 
-      <p data-pid="p12">There will be fewer of them. Each will be bigger — mechanized — with mid-level people overseeing the AI and managing edge-case scenarios. Engineers. Again, no entry-level work.</p>
-      <p data-pid="p13">Media agencies will be hired to deliver low-impact, proven outcomes. Their job is to ensure the client's business survives forever, come hell or high water.</p>
-      <p data-pid="p14">They will be paid via a small subscription fee, like an index fund's low expense ratio.</p>
-      <p data-pid="p15">One marketer will only work with one media agency — concentrating their spend to achieve scale across all channels.</p>
-      <p data-pid="p16" class="emphasis-line">There will be no mid-sized media agencies.</p>
+    <!-- FIGURE: hollow middle -->
+    <figure class="chart" id="fig-barbell">
+      <figcaption class="chart-head">
+        <span class="chart-kicker">Figure 4</span>
+        <h4 class="chart-title">The missing middle</h4>
+        <p class="chart-sub">Where the billable work goes, by stakes — a conceptual view</p>
+      </figcaption>
+      <div class="chart-svg" data-chart="barbell"></div>
+      <p class="chart-source">Conceptual. Work polarizes toward commodity (too cheap to bill hours) and high-stakes (performance-billed) extremes.</p>
+    </figure>
 
-      <p data-pid="p17">Holdcos will be gone — (re)split back into creative and media agencies, detangling the mismatches between size, business models, and client expectations. The dream of creative-media integration will finally be put to rest, failed.</p>
+    <h2 class="crosshead" data-pid="c1">Hedge funds and endowments</h2>
 
-      <p data-pid="p18">The CMO's role will be greatly diminished. Creative agencies will report to the CEO — it's a bet on the direction of the brand. Media agencies will report to the CFO — it is simply capital allocation, after all.</p>
+    <blockquote class="pull" data-pid="pq1">Creative agencies will become the marketer's hedge funds.</blockquote>
 
-      <p data-pid="p19">Smaller businesses (sub-Fortune 100) won't hire either creative or media agencies at all. No retainer or subscription fee would justify it. These businesses will ideate, create, and activate directly within the social platforms, which will each have their own self-serve suite of AI tools.<a class="src" href="#s-selfserve" data-src="selfserve" title="Sources on platform self-serve AI">³</a></p>
+    <p data-pid="p6">There will be more of them. Each will be smaller, with very senior people. Craftspeople. They will be AI-powered. Meaning, there will be little to no entry-level work.</p>
+    <p data-pid="p7">Each will be specialized by creative output — Super Bowl ad, creator campaign, OOH, experiential, etc.</p>
+    <p data-pid="p8">Creative agencies will be hired to deliver high-impact but rare home runs. They should not be fired for their failures. But they will be.</p>
+    <p data-pid="p9">They will be paid with a small retainer plus a performance bonus.</p>
+    <p data-pid="p10">One marketer may work with several creative agencies at once (including an in-house option for Fortune 100 companies) — spreading their bets and smoothing variance across them.</p>
+    <p class="emphasis-line" data-pid="p11">There will be no mid-sized creative agencies.</p>
 
-      <p data-pid="p20">Agencies will no longer be at the glamorous center of the agency industrial complex — they will be functional middleware between marketers and platforms, a luxury only the biggest businesses can afford.</p>
-    </section>
+    <blockquote class="pull" data-pid="pq2">Media agencies will become the marketer's endowments.</blockquote>
 
-    <!-- PORTFOLIO -->
-    <section id="portfolio" class="portfolio">
-      <div class="act-head center">
-        <span class="act-index">◆ Interactive</span>
-        <h2>The Marketer's Portfolio</h2>
-      </div>
-      <p class="portfolio-intro">By 2035 the marketer stops buying "agencies" and starts allocating a portfolio. Two asset classes, two risk profiles, two reporting lines. Tap a row to compare.</p>
+    <p data-pid="p12">There will be fewer of them. Each will be bigger — mechanized — with mid-level people overseeing the AI and managing edge-case scenarios. Engineers. Again, no entry-level work.</p>
+    <p data-pid="p13">Media agencies will be hired to deliver low-impact, proven outcomes. Their job is to ensure the client's business survives forever, come hell or high water.</p>
+    <p data-pid="p14">They will be paid via a small subscription fee, like an index fund's low expense ratio.</p>
+    <p data-pid="p15">One marketer will only work with one media agency — concentrating their spend to achieve scale across all channels.</p>
+    <p class="emphasis-line" data-pid="p16">There will be no mid-sized media agencies.</p>
 
-      <div class="port-grid" id="port-grid">
-        <!-- header -->
-        <div class="port-cell port-dim head-dim">Dimension</div>
-        <div class="port-cell port-head creative">
-          <span class="port-type">Creative agencies</span>
-          <span class="port-class">The Hedge Fund</span>
-        </div>
-        <div class="port-cell port-head media">
-          <span class="port-type">Media agencies</span>
-          <span class="port-class">The Endowment</span>
-        </div>
-        <!-- rows injected by JS -->
-      </div>
+    <!-- FIGURE: risk-return quadrant -->
+    <figure class="chart wide" id="fig-quadrant">
+      <figcaption class="chart-head">
+        <span class="chart-kicker">Figure 5</span>
+        <h4 class="chart-title">The marketer's portfolio</h4>
+        <p class="chart-sub">Two asset classes, two risk profiles — a conceptual map</p>
+      </figcaption>
+      <div class="chart-svg" data-chart="quadrant"></div>
+      <p class="chart-source">Conceptual. Creative is bought for rare, high-variance home runs; media for steady, proven returns.</p>
+    </figure>
 
-      <p class="port-foot">The middle disappears in both columns. <strong>No mid-sized agencies survive</strong> — only boutique craftshops and mechanized utilities.</p>
-    </section>
+    <!-- Comparison table -->
+    <figure class="compare" id="fig-compare">
+      <table>
+        <thead>
+          <tr>
+            <th class="c-dim">&nbsp;</th>
+            <th class="c-creative"><span class="c-type">Creative</span><span class="c-class">The hedge fund</span></th>
+            <th class="c-media"><span class="c-type">Media</span><span class="c-class">The endowment</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th>Number &amp; size</th><td>More of them; small, boutique craftshops</td><td>Fewer of them; big, mechanized utilities</td></tr>
+          <tr><th>The people</th><td>Very senior craftspeople, AI-powered</td><td>Mid-level engineers overseeing the AI</td></tr>
+          <tr><th>The mandate</th><td>High-impact, rare home runs</td><td>Low-impact, proven outcomes — survive forever</td></tr>
+          <tr><th>How they're paid</th><td>Small retainer <em>+ performance bonus</em></td><td>Small subscription, like an index fund's expense ratio</td></tr>
+          <tr><th>The marketer</th><td><em>Several</em> at once — spread the bets</td><td><em>One</em> — concentrate the spend</td></tr>
+          <tr><th>Reports to</th><td>The <em>CEO</em> — a bet on the brand</td><td>The <em>CFO</em> — it's capital allocation</td></tr>
+          <tr><th>The middle</th><td colspan="2" class="c-span">No mid-sized agencies survive in either column</td></tr>
+        </tbody>
+      </table>
+    </figure>
 
-    <hr class="divider" data-glyph="✶ ✶ ✶" />
+    <p data-pid="p17">Holdcos will be gone — (re)split back into creative and media agencies, detangling the mismatches between size, business models, and client expectations. The dream of creative-media integration will finally be put to rest, failed.</p>
 
-    <!-- ACT III -->
-    <section id="act-3" class="act">
-      <div class="act-head">
-        <span class="act-index">Act III</span>
-        <h2>The Whale Oil Era</h2>
-        <span class="act-year">2045</span>
-      </div>
+    <p data-pid="p18">The CMO's role will be greatly diminished. Creative agencies will report to the CEO — it's a bet on the direction of the brand. Media agencies will report to the CFO — it is simply capital allocation, after all.</p>
 
-      <p data-pid="p21">By 2045, the final survivors retire. The need for creative and media persists, but the agency industrial complex will be remembered akin to the whale oil business — once essential, but ultimately a temporary solution in history.</p>
-      <p data-pid="p22">Even the successful hedge funds and endowments will become obsolete.</p>
+    <p data-pid="p19">Smaller businesses (sub-Fortune 100) won't hire either creative or media agencies at all. No retainer or subscription fee would justify it. These businesses will ideate, create, and activate directly within the social platforms, which will each have their own self-serve suite of AI tools.<a class="src" href="#s-selfserve" title="Sources: platform self-serve AI">3</a></p>
 
-      <blockquote class="pull last" data-pid="pq3">Replaced by what, I'm unsure.</blockquote>
-    </section>
+    <p data-pid="p20">Agencies will no longer be at the glamorous center of the agency industrial complex — they will be functional middleware between marketers and platforms, a luxury only the biggest businesses can afford.</p>
 
-    <!-- TIMELINE -->
-    <section id="timeline" class="timeline-section">
-      <div class="act-head center">
-        <span class="act-index">⌚ Arc</span>
-        <h2>The Twenty-Year Arc</h2>
-      </div>
-      <ol class="timeline" id="timeline">
-        <li class="tl-node" data-target="act-1">
-          <span class="tl-year">2025</span>
-          <span class="tl-dot"></span>
-          <div class="tl-card">
-            <h3>The Collapse</h3>
-            <p>AI eats the junior layer. Holdcos merge. Procurement wins. The middle loses its footing.</p>
-          </div>
-        </li>
-        <li class="tl-node" data-target="act-2">
-          <span class="tl-year">2035</span>
-          <span class="tl-dot"></span>
-          <div class="tl-card">
-            <h3>The Re-Split</h3>
-            <p>Creative becomes hedge funds; media becomes endowments. Holdcos detangle. The CMO shrinks.</p>
-          </div>
-        </li>
-        <li class="tl-node" data-target="act-3">
-          <span class="tl-year">2045</span>
-          <span class="tl-dot"></span>
-          <div class="tl-card">
-            <h3>Obsolescence</h3>
-            <p>The survivors retire. The complex is remembered like whale oil — once essential, then gone.</p>
-          </div>
-        </li>
+    <h2 class="crosshead" data-pid="c2">The whale-oil era</h2>
+
+    <p data-pid="p21">By 2045, the final survivors retire. The need for creative and media persists, but the agency industrial complex will be remembered akin to the whale oil business — once essential, but ultimately a temporary solution in history.</p>
+    <p data-pid="p22">Even the successful hedge funds and endowments will become obsolete.</p>
+
+    <!-- FIGURE: timeline -->
+    <figure class="chart wide" id="fig-timeline">
+      <figcaption class="chart-head">
+        <span class="chart-kicker">Figure 6</span>
+        <h4 class="chart-title">The twenty-year arc</h4>
+        <p class="chart-sub">From collapse to obsolescence</p>
+      </figcaption>
+      <ol class="timeline">
+        <li class="tl-node" data-target="fig-tenure"><span class="tl-year">2025</span><span class="tl-dot"></span><div class="tl-card"><h3>The collapse</h3><p>AI eats the junior layer. Holdcos merge. Procurement wins. The middle loses its footing.</p></div></li>
+        <li class="tl-node" data-target="fig-quadrant"><span class="tl-year">2035</span><span class="tl-dot"></span><div class="tl-card"><h3>The re-split</h3><p>Creative becomes hedge funds; media becomes endowments. Holdcos detangle. The CMO shrinks.</p></div></li>
+        <li class="tl-node" data-target="fig-timeline"><span class="tl-year">2045</span><span class="tl-dot"></span><div class="tl-card"><h3>Obsolescence</h3><p>The survivors retire. The complex is remembered like whale oil — once essential, then gone.</p></div></li>
       </ol>
-    </section>
+    </figure>
 
-    <!-- SOURCES -->
-    <section id="sources" class="sources">
-      <div class="act-head center">
-        <span class="act-index">§ Receipts</span>
-        <h2>Sources &amp; Further Reading</h2>
-      </div>
-      <p class="sources-intro">This is a forecast, not reporting — but every premise is anchored in something already happening. The signals, grouped by claim:</p>
-      <div class="source-groups" id="source-groups"><!-- injected by JS --></div>
+    <blockquote class="pull last" data-pid="pq3">Replaced by what, I'm unsure.</blockquote>
+
+    <!-- ===== Further reading ===== -->
+    <section id="further-reading" class="further">
+      <div class="rule-thin"></div>
+      <h3 class="further-title">Further reading &amp; sources</h3>
+      <p class="further-intro">A forecast, not reporting — but every premise is anchored in something already happening. Grouped by claim.</p>
+      <div class="source-groups" id="source-groups"></div>
     </section>
 
     <footer class="article-foot">
-      <p>Written by Ed Tsue. Interactive edition built as a living document — your highlights and notes stay on this device.</p>
-      <button id="share-btn" class="ghost-btn">Copy link to this essay</button>
+      <p>Written by Ed Tsue · Interactive edition · Your highlights and notes stay on this device.</p>
+      <button id="share-btn" class="ghost-btn">Copy link</button>
     </footer>
-  </main>
-</div>
+  </div>
+</article>
 
 <!-- Selection popover -->
 <div id="sel-popover" class="sel-popover" role="menu" aria-hidden="true">
-  <button data-color="yellow" class="swatch sw-yellow" title="Highlight yellow"></button>
-  <button data-color="pink" class="swatch sw-pink" title="Highlight pink"></button>
-  <button data-color="blue" class="swatch sw-blue" title="Highlight blue"></button>
-  <button data-color="green" class="swatch sw-green" title="Highlight green"></button>
+  <button data-color="yellow" class="swatch sw-yellow" title="Highlight"></button>
+  <button data-color="pink" class="swatch sw-pink" title="Highlight"></button>
+  <button data-color="blue" class="swatch sw-blue" title="Highlight"></button>
+  <button data-color="green" class="swatch sw-green" title="Highlight"></button>
   <span class="sep"></span>
   <button id="add-note-btn" class="pop-text">+ Note</button>
 </div>
@@ -244,7 +243,7 @@
     <button id="clear-notes" class="ghost-btn sm danger">Clear all</button>
   </div>
   <div id="notes-list" class="notes-list"></div>
-  <p id="notes-empty" class="notes-empty">No highlights yet. Select any passage in the essay to highlight it or attach a note. Everything is saved on this device.</p>
+  <p id="notes-empty" class="notes-empty">No highlights yet. Select any passage to highlight it or attach a note. Everything is saved on this device.</p>
 </div>
 <div id="drawer-scrim" class="scrim" aria-hidden="true"></div>
 
@@ -254,7 +253,7 @@
     <p class="nm-quote" id="nm-quote"></p>
     <textarea id="nm-text" placeholder="Your note…" rows="4"></textarea>
     <div class="nm-actions">
-      <button id="nm-delete" class="ghost-btn sm danger">Delete highlight</button>
+      <button id="nm-delete" class="ghost-btn sm danger">Delete</button>
       <div class="nm-right">
         <button id="nm-cancel" class="ghost-btn sm">Cancel</button>
         <button id="nm-save" class="primary-btn sm">Save</button>
